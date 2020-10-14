@@ -174,7 +174,7 @@
                 style="@style/NumPad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
+                android:layout_weight="0.8"
                 android:insetRight="6dp"
                 android:onClick="handleNumber"
                 android:text="0" />
@@ -184,7 +184,7 @@
                 style="@style/NumPad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
+                android:layout_weight="0.2"
                 android:insetLeft="6dp"
                 android:onClick="handleNumber"
                 android:text="." />
@@ -201,7 +201,8 @@
                 android:layout_height="wrap_content"
                 android:insetRight="6dp"
                 android:onClick="addFull"
-                android:text="@string/button_add" />
+                android:text="@string/button_add"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/button_halfAdd"
@@ -211,7 +212,23 @@
                 android:insetLeft="6dp"
                 android:insetRight="6dp"
                 android:onClick="addHalf"
-                android:text="@string/button_half" />
+                android:text="@string/button_half"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/button_c"
+                style="@style/NumPad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:insetRight="6dp"
+                android:onClick="clearRunningTotal"
+                android:text="@string/button_c" />
 
             <ImageButton
                 android:id="@+id/button_del"
@@ -222,7 +239,6 @@
                 android:contentDescription="@string/button_del"
                 android:onClick="deleteChar"
                 app:srcCompat="@android:drawable/ic_input_delete" />
-
         </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

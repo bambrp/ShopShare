@@ -20,10 +20,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleNumber(View view) {
-        //TODO Prevent leading zero, more than one decimal point, more than two decimal places
+        //TODO Prevent leading zero
         TextView ic = findViewById(R.id.itemCost);
         String currentTotal = ic.getText().toString();
-        ic.setText((currentTotal.equals("0.00") ? "" : currentTotal) + ((Button) view).getText().toString());
+        String newChar = ((Button) view).getText().toString();
+        if (currentTotal.contains(".") && newChar.equals(".")) {
+            return;
+        }
+        ic.setText((currentTotal.equals("0.00") ? "" : currentTotal) + newChar);
     }
 
     public void addFull(View view) {
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         TextView ic = findViewById(R.id.itemCost);
         BigDecimal rtNum = new BigDecimal(rt.getText().toString());
         BigDecimal icNum = new BigDecimal(ic.getText().toString());
-        rtNum = rtNum.add(half ? icNum.divide(new BigDecimal(2)) : icNum);
+        rtNum = rtNum.add(half ? icNum.divide(new BigDecimal(2),2, RoundingMode.HALF_EVEN) : icNum);
         NumberFormat nf = NumberFormat.getNumberInstance();
         nf.setMinimumFractionDigits(2);
         rt.setText(nf.format(rtNum));
@@ -52,5 +56,10 @@ public class MainActivity extends AppCompatActivity {
         if (ic.length() > 0) {
             ic.setText(icText.subSequence(0, icText.length() - 1));
         }
+    }
+
+    public void clearRunningTotal(View view) {
+        TextView rt = findViewById(R.id.runningTotal);
+        rt.setText("0.00");
     }
 }
