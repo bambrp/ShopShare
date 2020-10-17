@@ -2,10 +2,14 @@ package net.swedeheart.shopshare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.view.View.OnLongClickListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView rt = findViewById(R.id.runningTotal);
+        rt.setOnLongClickListener(this.clipboardCopyListener);
     }
 
     public void handleNumber(View view) {
@@ -71,7 +77,13 @@ public class MainActivity extends AppCompatActivity {
         TextView rt = findViewById(R.id.runningTotal);
         rt.setText("0.00");
     }
-    public void copyToClipboard(View view) {
-
-    }
+    private OnLongClickListener clipboardCopyListener = new OnLongClickListener() {
+        public boolean onLongClick(View v) {
+            ((ClipboardManager)getSystemService(ClipboardManager.class)).setPrimaryClip(
+                    ClipData.newPlainText("Running total", ((TextView)v).getText())
+            );
+            Toast.makeText(v.getContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+    };
 }
