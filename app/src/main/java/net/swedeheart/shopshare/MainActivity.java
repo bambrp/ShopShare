@@ -20,12 +20,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleNumber(View view) {
-        //TODO Prevent leading zero
         TextView ic = findViewById(R.id.itemCost);
         String currentTotal = ic.getText().toString();
         String newChar = ((Button) view).getText().toString();
-        if (currentTotal.contains(".") && newChar.equals(".")) {
-            return;
+        if (newChar.equals(".")) {
+            if (currentTotal.equals("") || currentTotal.equals("0.00")) {
+                ic.setText("0.");
+                return;
+            }
+            if (currentTotal.contains(".")) {
+                return;
+            }
+        } else if (currentTotal.equals("0")) {
+                    // If all you have is a zero, it can only be followed
+                    // by a decimal point- avoids leading zero.
+                    return;
         }
         ic.setText((currentTotal.equals("0.00") ? "" : currentTotal) + newChar);
     }
@@ -61,5 +70,8 @@ public class MainActivity extends AppCompatActivity {
     public void clearRunningTotal(View view) {
         TextView rt = findViewById(R.id.runningTotal);
         rt.setText("0.00");
+    }
+    public void copyToClipboard(View view) {
+
     }
 }
