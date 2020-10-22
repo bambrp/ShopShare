@@ -17,6 +17,9 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final static String RT = "RT";
+    private final static String IC = "IC";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
         TextView rt = findViewById(R.id.runningTotal);
         rt.setText("0.00");
     }
+
+    public void calcTotal(View view) {
+        TextView rt = findViewById(R.id.runningTotal);
+        TextView ic = findViewById(R.id.itemCost);
+        BigDecimal rtNum = new BigDecimal(rt.getText().toString());
+        BigDecimal icNum = new BigDecimal(ic.getText().toString());
+        rt.setText(icNum.subtract(rtNum).toString());
+    }
     private OnLongClickListener clipboardCopyListener = new OnLongClickListener() {
         public boolean onLongClick(View v) {
             ((ClipboardManager)getSystemService(ClipboardManager.class)).setPrimaryClip(
@@ -86,4 +97,24 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        savedInstanceState.putString(RT, ((TextView)findViewById(R.id.runningTotal)).getText().toString());
+        savedInstanceState.putString(IC, ((TextView)findViewById(R.id.itemCost)).getText().toString());
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        ((TextView)findViewById(R.id.runningTotal)).setText(savedInstanceState.getString(RT));
+        ((TextView)findViewById(R.id.itemCost)).setText(savedInstanceState.getString(IC));
+    }
 }

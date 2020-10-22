@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +55,17 @@
                 android:text="7"
                 android:textSize="24sp" />
 
+            <Button
+                android:id="@+id/button_fullAdd"
+                style="@style/NumPad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:insetLeft="6dp"
+                android:onClick="addFull"
+                android:text="@string/button_add"
+                android:textSize="18sp" />
+
         </TableRow>
 
         <TableRow
@@ -91,6 +102,18 @@
                 android:insetLeft="6dp"
                 android:onClick="handleNumber"
                 android:text="4" />
+
+            <Button
+                android:id="@+id/button_halfAdd"
+                style="@style/NumPad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:insetLeft="6dp"
+                android:insetRight="0dp"
+                android:onClick="addHalf"
+                android:text="@string/button_half"
+                android:textSize="18sp" />
 
         </TableRow>
 
@@ -129,6 +152,17 @@
                 android:onClick="handleNumber"
                 android:text="1" />
 
+            <Button
+                android:id="@+id/button_total"
+                style="@style/NumPad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:insetLeft="6dp"
+                android:onClick="calcTotal"
+                android:text="@string/button_total"
+                android:textSize="18sp" />
+
         </TableRow>
 
         <TableRow
@@ -152,56 +186,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:insetLeft="6dp"
+                android:insetRight="6dp"
                 android:onClick="handleNumber"
                 android:text="." />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button_fullAdd"
-                style="@style/NumPad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:insetRight="6dp"
-                android:onClick="addFull"
-                android:text="@string/button_add"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/button_halfAdd"
-                style="@style/NumPad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:insetLeft="6dp"
-                android:insetRight="6dp"
-                android:onClick="addHalf"
-                android:text="@string/button_half"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/button_total"
-                style="@style/NumPad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:insetLeft="6dp"
-                android:onClick="calcTotal"
-                android:text="@string/button_total"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/button_c"
                 style="@style/NumPad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:insetLeft="6dp"
                 android:insetRight="6dp"
                 android:onClick="clearRunningTotal"
                 android:text="@string/button_c" />
@@ -216,6 +210,18 @@
                 android:onClick="deleteChar"
                 app:srcCompat="@android:drawable/ic_input_delete" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
     </TableLayout>
 
     <TextView
@@ -223,7 +229,7 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:editable="false"
         android:fontFamily="monospace"

@@ -4,4 +4,5 @@
     <string name="button_half">half</string>
     <string name="button_del">delete</string>
     <string name="button_c">C</string>
+    <string name="button_total">total</string>
 </resources>
